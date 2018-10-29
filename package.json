@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose --coverage --detectOpenHandles --forceExit",
+    "test:watch": "jnpm test -- --watch",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
@@ -33,6 +34,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -40,6 +43,7 @@
     "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
     "istanbul": "^0.4.5",
+    "jest": "^23.6.0",
     "nyc": "^13.1.0",
     "redux": "^4.0.1",
     "style-loader": "^0.23.0",
