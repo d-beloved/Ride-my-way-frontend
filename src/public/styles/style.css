@@ -1,0 +1,763 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,900|Ubuntu:400,700');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One|Kaushan+Script|Permanent+Marker');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+body,
+html {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.4;
+  background: #eeeeee;
+  height: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+  color: #362130;
+}
+
+#wrapper {
+  width: 500px;
+  border: 1px solid black;
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+#first {
+  width: 300px;
+  float:left; /* add this */
+  border: 1px solid red;
+}
+#second {
+  border: 1px solid green;
+  overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+.content {
+  flex: 1 0 auto;
+  font-size: 1.0rem;
+}
+
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+header {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: center;
+  min-height: 50px;
+}
+
+.header-logo {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.brand {
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 900;
+  border-bottom: 1px solid #6aa1c4;
+}
+
+.logo {
+  padding-top: 0.5rem;
+  width: auto;
+}
+
+nav.nav-bar ul li {
+  list-style: none;
+  padding: 20px 0;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+.list {
+  margin: 3em;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.ofr {
+  padding-left: 10px;
+}
+
+h3 {
+  text-transform: uppercase;
+  color: #363851;
+  border-bottom: 1px solid #d8bfd8;
+  margin: 5px;
+  padding: 15px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+label {
+  display: inline-block;
+  font-weight: 200;
+  letter-spacing: 1px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 15px;
+}
+
+.filter {
+  font-size: 10px;
+}
+
+.landing {
+  font-size: initial;
+  text-align: center;
+  padding-top: 130px;
+}
+
+.landing h1 {
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Fredoka One', cursive, sans-serif;
+  font-size: 3.25rem;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.landing p {
+  color: #fff;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 1px #181818;
+}
+
+.btn-default {
+  border: 1px solid #363851;
+}
+
+.btn {
+  border-radius: 10px;
+  background: transparent;
+  padding: 0.2rem 0.85rem;
+  color: #363851;
+}
+
+.btn-landing {
+  border: 1px solid #ffffffc2;
+  padding: 10px 30px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-style: oblique;
+  background: white;
+}
+
+.btn-sm {
+  border: 1px solid #111;
+  border-radius: 3px;
+  padding: 0.1rem 0.75rem;
+  color: #363851;
+  font-size: 11px;
+}
+
+.btn-primary {
+  background: #363851;
+  color: white;
+}
+
+.btn-edit {
+  background: #f6ff6c;
+  color: #111;
+}
+
+.btn-delete {
+  color: white;
+  background: #ff4f4f;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+
+.row {
+  margin: 0 auto;
+}
+
+.col-1 .col-1-2 {
+  width: 100%;
+  padding-top: 15px;
+}
+
+nav .row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-toggle .mdi-view-sequential {
+  background: #D1CBCB;
+  border: 1px solid #ddf3ff;
+  color: #ddf3ff;
+  font-size: 2.5rem;
+}
+
+.main-nav {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  list-style: none;
+  margin: 2.8rem auto 0;
+  width: 20.0rem;
+}
+
+.main-nav li {
+  margin: 0 auto 2.3rem;
+  width: fit-content;
+}
+
+.main-nav li a:link,
+.main-nav li a:visited {
+  border-bottom: 2px solid transparent;
+  color: white;
+  padding: 8px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-bottom 0.2s;
+}
+
+.main-nav li a.active {
+  border-bottom: 2px solid #99dcff;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom: 2px solid #e1b12c;
+}
+
+.navbar-show {
+  display: block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea, select {
+    background-color: rgb(245, 243, 243);
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 1px solid #D6D6D6;
+    padding: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
+}
+
+.btn,
+input[type=submit],
+input[type=button] {
+  color: #fff;
+  display: inline-block;
+  font-weight: 300;
+  margin-top: 5px;
+  padding: 10px 30px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+input[type=submit] {
+  background-color: #363851;
+  border: 1px solid #363851;
+}
+
+input[type=submit]:hover,
+input[type=submit]:active {
+  background-color: #363851;
+}
+
+
+input[type=button] {
+  background-color: #bb3615;
+  border: 1px solid #bb3615;
+}
+
+input[type=button]:hover,
+input[type=button]:active {
+  background-color: #882810;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* Modal  */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Profile CSS */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.title {
+    color: grey;
+    font-size: 18px;
+}
+
+section {
+  flex: 1;
+}
+
+.ride {
+  position: relative;
+  background-size: 90%;
+}
+
+ul {
+  list-style: none;
+}
+
+#abutton {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color:  #363851;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(3, 3, 3);
+}
+
+#abutton:hover, a:hover {
+    opacity: 0.7;
+}
+
+/* ----------------------------------------------- */
+/* Forms */
+/* ----------------------------------------------- */
+.fail {
+  background-color: #f44336;
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 18px;
+  text-align: center;
+}
+
+.success {
+  background-color: #43af32;
+  color: #fff;
+  padding: 0.3rem;
+  font-size: 18px;
+  text-align: center;
+}
+
+.section-form {
+  position: relative;
+  margin-bottom: 5.0rem;
+  font-size: initial;
+  margin-top: 7.0rem;
+}
+
+.signup-form {
+  padding: 1.6rem;
+  width: 100%;
+}
+
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.3rem;
+}
+
+.card-form {
+  background-color: rgb(245, 243, 243);
+  max-width: 600px;
+  border-radius: 30px;
+  padding-bottom: 1.6rem;
+}
+
+.form-title {
+  color: #fff;
+  margin-bottom: 4.0rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.form-group label {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 400;
+  padding-bottom: 0.9rem;
+}
+
+.form-control
+ {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+}
+
+.signup-form .submit-btn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.6rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.form-info {
+  align-self: center;
+  margin-top: 1.0rem;
+}
+
+.form-info  a {
+  color: #b1850b;
+  margin-top: 1.0rem;
+}
+
+.update-btn input[type=button]{
+  margin-top: 1.6rem;
+}
+
+footer a {
+  color: white;
+}
+
+.display-error {
+  background: #e84118;
+  color: #fff;
+  padding: 0.3rem;
+  text-align: right;
+}
+
+/* ********************* */
+/*      Pagination       */
+/* ********************* */
+.pagination {
+  text-align: center;
+  margin-bottom: 5.0rem; 
+  margin-top: 5.0rem; 
+}
+
+.pagination a {
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #363851;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  color: #555;
+}
+
+/**/
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 40px;
+}
+
+.card2 {
+  background: #ffffffd9;
+  width: 90%;
+  margin: 40px;
+}
+
+.rides-list {
+  overflow-x: auto;
+}
+
+.error {
+  color: #cc0033;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0 0;
+}
+.card2-header {
+  background: #05111fc6;
+  color: #ffffff;
+  padding: 20px;
+  cursor: pointer;
+  text-align: right;
+}
+.card2-header a {
+  padding: 0 10px;
+  color: #ffffff;
+}
+.search-ride {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  width: 70%;
+}
+
+.nav-toggle {
+  background: transparent;
+}
+
+.button {
+  text-align: center;
+}
+
+button {
+  border: none;
+  background: #05111fc6;
+  width: 7.0rem;
+  height: 2.50rem;
+  color: #ffffff;
+  border-radius: 9px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h3 {
+  padding-top: 40px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.view-pending-btn {
+  background-color: #363851;
+  text-align: center;
+}
+/** Media queries **/
+
+@media only screen and (max-width: 800px) {
+  .landing h1 {
+    font-size: 2.85rem;
+  }
+  .wrapper {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  brand {
+    font-size: 26px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .card2 {
+    width: 90%;
+    margin: 10px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .search-ride {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  header {
+    display: inline-block;
+    text-align: left;
+  }
+  .brand {
+    font-size: 26px;
+    padding: 30px 60px;
+    border: none;
+    float: left;
+  }
+  nav.nav-bar ul li {
+    float: right;
+    padding: 40px 20px 40px 0;
+  }
+  nav .row {
+    flex-direction: row;
+  }
+  nav .main-nav {
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 1.15rem;
+    margin-left: 0;
+    margin-right: 0; 
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .main-nav {
+    width: 25.0rem;
+  }
+  
+  .request-form {
+    margin-top: 10.0rem;
+  }
+
+  .section-details {
+    margin-top: 8.5rem;
+  }
+
+  .user-requests {
+    margin-top: 14.6rem;
+  }
+
+  .signup-form .form-group {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .display-error {
+    font-size: 1.9rem;
+    margin-left: 17.2rem;
+    max-width: 39.6rem;
+  }
+
+  .update-btn input[type=button]{
+    margin-top: 0;
+    margin-left: 5.9rem;
+  }
+
+  .signup-form .create-btn {
+    justify-content: center;
+  }
+
+  .signup-form .form-info {
+    margin-left: 1.6rem;
+  }
+  footer p {
+    font-size: 14px;
+  }
+  .col {
+    float: left;
+    padding-left: 4rem;
+  }
+  .col-1 {
+    width: 100%;
+  }
+  .col-1 .col-1-2 {  
+    width: calc((100% / 2) - 5%);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  
+}
