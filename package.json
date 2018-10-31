@@ -4,8 +4,10 @@
   "description": "A carpooling application using React",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "dev": "webpack-dev-server --mode development --open --hot",
+    "start": "serve -s dist/",
     "build": "webpack --mode production",
+    "heroku-postbuild": "npm run build",
     "lint": "eslint ./",
     "test": "jest --verbose --coverage --detectOpenHandles --forceExit",
     "test:watch": "npm test -- --watch",
@@ -68,6 +70,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-immutable-state-invariant": "^2.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "serve": "^10.0.2"
   }
 }

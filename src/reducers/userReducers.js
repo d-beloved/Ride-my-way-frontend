@@ -4,7 +4,7 @@ import {
 
 import initialState from '../store/intialState';
 
-const userReducer = (state = initialState.signup, action) => {
+const userReducer = (state = initialState.users, action) => {
   switch (action.type) {
   case SET_CURRENT_USER:
     return {

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import signUpAction, { clearErrors } from '../actions/userActions';
-
+import { loginAction, clearErrors } from '../../actions/userActions';
+import styles from '../Signup/Signup.module.css';
 
 /**
- * @class Signup
+ * @class Signin
  *
- * @classdesc register a user
+ * @classdesc log a user in
  */
-export class SignUp extends Component {
+export class Signin extends Component {
   /**
    *
    * @param {Object} props the properties of the class component
@@ -21,9 +21,6 @@ export class SignUp extends Component {
     super(props);
 
     this.state = {
-      firstname: "",
-      lastname: "",
-      username: "",
       email: "",
       password: ""
     };
@@ -42,7 +39,7 @@ export class SignUp extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { props } = this
-    props.dispatch(signUpAction(this.state));
+    props.dispatch(loginAction(this.state));
   }
 
   handleChange(event) {
@@ -52,7 +49,7 @@ export class SignUp extends Component {
   }
 
   render() {
-    const { error, signingUp } = this.props;
+    const { error, signingIn } = this.props;
     if (localStorage.token) {
       this.props.history.push('/allrides');
     }
@@ -79,7 +76,7 @@ export class SignUp extends Component {
                 </div>
                 <ul className="main-nav" id="navbar-collapse">
                   <li><Link to="/allrides">All Rides</Link></li>
-                  <li><Link to="/signin">Login</Link></li>
+                  <li><Link to="/signup">Signup</Link></li>
                 </ul>
               </div>
             </nav>
@@ -89,51 +86,7 @@ export class SignUp extends Component {
             <div className="row card-form">
               {error ? <p className={styles.invalidCredential}>
                 {error}</p> : null}
-              <form onSubmit={this.handleSubmit} className="signup-form" id="signupForm" name="signupForm">
-
-                <div className="form-group">
-                  <input
-                    name="Firstname"
-                    type="text"
-                    id="Firstname"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    placeholder="Firstname"
-                    required />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    name="lastname"
-                    type="text"
-                    id="lastname"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    placeholder="lastname"
-                    required />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    name="Phoneno"
-                    type="text"
-                    id="Phoneno"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    placeholder="Phone number"
-                    required />
-                </div>
-
-                <div className="form-group">
-                  <input
-                    name="username"
-                    type="text"
-                    id="username"
-                    onChange={this.handleChange}
-                    className="form-control"
-                    placeholder="username"
-                    required />
-                </div>
+              <form onSubmit={this.handleSubmit} className="signup-form" id="signinForm" name="signinForm">
 
                 <div className="form-group">
                   <input
@@ -160,12 +113,11 @@ export class SignUp extends Component {
                 <div className="submit-btn">
                   <input
                     type="submit"
-                    value="Create account"
-                    id="submitBtn"
-                    className={signingUp ? `${styles.disabled_btn}` : ''} />
+                    value="Login"
+                    className={signingIn ? `${styles.disabled_btn}` : ''} />
                   <p className="form-info">
-                    Already have an account ?
-                    <Link to="/signin"> Login</Link>
+                    Not registered ? create an account
+                    <Link to="/signup"> Signup</Link>
                   </p>
                 </div>
               </form>
@@ -176,18 +128,18 @@ export class SignUp extends Component {
   }
 }
 
-SignUp.propTypes = {
+Signin.propTypes = {
   actions: PropTypes.object,
   history: PropTypes.object
 };
 
 const mapStateToProps = (state) => {
-  const { signup } = state;
+  const { users } = state;
   return {
-    user: signup.user,
-    signingUp: signup.loading,
-    error: signup.error
+    user: users.user,
+    signingIn: users.loading,
+    error: users.error
   };
 };
 
-export default connect(mapStateToProps)(SignUp);
+export default connect(mapStateToProps)(Signin);

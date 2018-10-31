@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import signUpAction, { clearErrors } from '../../actions/userActions';
+import { signUpAction, clearErrors } from '../../actions/userActions';
 import styles from './Signup.module.css';
 
 /**
@@ -182,11 +182,11 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  const { signup } = state;
+  const { users } = state;
   return {
-    user: signup.user,
-    signingUp: signup.loading,
-    error: signup.error
+    user: users.user,
+    signingUp: users.loading,
+    error: users.error
   };
 };
 

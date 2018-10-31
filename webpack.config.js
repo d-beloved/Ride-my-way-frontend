@@ -20,7 +20,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader" 
+            loader: "style-loader"
           },
           {
             loader: "css-loader",
@@ -36,10 +36,13 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
     })
-]
+  ]
 };

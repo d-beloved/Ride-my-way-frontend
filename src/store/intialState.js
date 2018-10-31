@@ -1,5 +1,5 @@
 const initialState = {
-  signup: {
+  users: {
     user: {},
     loading: false,
     error: "",
