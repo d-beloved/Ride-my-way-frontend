@@ -41,17 +41,16 @@ const config = {
         ]
       },
       {
-        test: /\.(png|jp(e*)g|svg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 8000,
-            name: 'file-loader?name=/public/images/[name].[ext]'
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
           }
-        }, {
-          loader: 'file-loader',
-        }]
-      }
+        ]
+      },
     ]
   },
   plugins: [

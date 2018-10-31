@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginAction, clearErrors } from '../../actions/userActions';
 import styles from '../Signup/Signup.module.css';
+import background from "../../../public/images/cabbie.jpg";
 
 /**
  * @class Signin
@@ -57,7 +58,7 @@ export class Signin extends Component {
       this.state.redirectUser ?
         <Redirect to="/allrides" /> :
         <div className="content">
-          <img src="../src/public/images/cabbie.jpg"
+          <img src={background}
             className="bg" />
           <header>
             <nav className="container">

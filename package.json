@@ -2,7 +2,7 @@
   "name": "ride-my-way-frontend",
   "version": "1.0.0",
   "description": "A carpooling application using React",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
     "start": "serve -s dist/",

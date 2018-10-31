@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types;'
 import { Link } from 'react-router-dom';
+import background from "../../../public/images/cabbie.jpg";
 
 /**
  *  @class Homepage
@@ -15,7 +15,7 @@ export default class Homepage extends Component {
   render() {
     return (
       <div className="content">
-        <img src="/public/images/cabbie.jpg"
+        <img src={background}
         className="bg" />
         <header>
           <nav className="container">
