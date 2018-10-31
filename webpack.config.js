@@ -1,11 +1,22 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
-module.exports = {
-  entry: "./src/index.js",
+const env = process.env.NODE_ENV;
+const apiHost =
+  env === "production" ? "'https://ayo-ride-my-way-v1.herokuapp.com'" : "'http://localhost:3110'";
+
+const config = {
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true,
+  },
+  entry: {
+    filename: './src/index.js',
+  },
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    publicPath: '/',
+    filename: 'build.js',
   },
   module: {
     rules: [
@@ -13,33 +24,59 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        },
+          loader: "babel-loader",
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: {
+              minimize: true
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader" 
+            loader: "style-loader"
           },
           {
             loader: "css-loader",
             options: {
-              modules: true,
+              module: true,
               importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
+              localIdentName: "[local]___[hash:base64:5]",
               sourceMap: true,
               minimize: true
             }
+          },
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
           }
         ]
-      }
+      },
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+    }),
+    new webpack.DefinePlugin({
+      __API__: apiHost
     })
-]
+  ]
 };
+
+module.exports = config;

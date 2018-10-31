@@ -1,14 +1,18 @@
-import { createStore, applyMiddleware } from 'redux'
-// import { rootReducer } from './rootReducer'
-import reduxImmutableInvariant from 'redux-immutable-state-invariant'
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from '../reducers';
 
-
-export function configureStore(initialState) {
+/**
+ *
+ * @param {object} initialState the initial state
+ *
+ * @return {object} returns an object
+ */
+export default function configureStore(initialState = {}) {
   return createStore(
-    applyMiddleware(
-      thunk,
-      reduxImmutableInvariant()
-    )
-  )
+    rootReducer,
+    initialState,
+    compose(applyMiddleware(thunk),
+      window.devToolsExtension && process.env.NODE_ENV === 'development' ? window.devToolsExtension() : f => f), // eslint-disable-line
+  );
 }

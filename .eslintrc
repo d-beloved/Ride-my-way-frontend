@@ -16,7 +16,8 @@
 		"location": true,
 		"window": true,
 		"document": true,
-		"jest": true
+		"jest": true,
+		"__API__": true
 	},
 	"settings": {
 		"import/resolver": {
@@ -28,7 +29,7 @@
 	"rules": {
 		"indent": ["error", 2],
 		"max-len": [2, {
-			"code": 80
+			"code": 100
 		}],
 		"one-var": 0,
 		"one-var-declaration-per-line": 0,
