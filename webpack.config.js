@@ -1,5 +1,10 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
+
+const env = process.env.NODE_ENV;
+const apiHost =
+  env === "production" ? "'https://ayo-ride-my-way-v1.herokuapp.com'" : "'http://localhost:3110'";
 
 const config = {
   devServer: {
@@ -36,8 +41,19 @@ const config = {
       {
         test: /\.css$/,
         use: [
-          "style-loader",
-          "css-loader",
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              module: true,
+              importLoaders: 1,
+              localIdentName: "[local]___[hash:base64:5]",
+              sourceMap: true,
+              minimize: true
+            }
+          },
         ]
       },
       {
@@ -57,6 +73,9 @@ const config = {
     new HtmlWebPackPlugin({
       template: "./public/index.html",
     }),
+    new webpack.DefinePlugin({
+      __API__: apiHost
+    })
   ]
 };
 

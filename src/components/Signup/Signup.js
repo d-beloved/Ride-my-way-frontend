@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { signUpAction, clearErrors } from '../../actions/userActions';
-import styles from './Signup.module.css';
 import background from "../../../public/images/cabbie.jpg";
 
 /**
@@ -11,7 +10,7 @@ import background from "../../../public/images/cabbie.jpg";
  *
  * @classdesc register a user
  */
-export class SignUp extends Component {
+class SignUp extends Component {
   /**
    *
    * @param {Object} props the properties of the class component
@@ -25,6 +24,7 @@ export class SignUp extends Component {
       firstname: "",
       lastname: "",
       username: "",
+      phoneno: "",
       email: "",
       password: ""
     };
@@ -53,6 +53,7 @@ export class SignUp extends Component {
   }
 
   render() {
+    const { firstname, lastname, phoneno, username, email, password } = this.state;
     const { error, signingUp } = this.props;
     if (localStorage.token) {
       this.props.history.push('/allrides');
@@ -88,16 +89,17 @@ export class SignUp extends Component {
 
           <section className="section-form container">
             <div className="row card-form">
-              {error ? <p className={styles.invalidCredential}>
+              {error ? <p className="invalidCredential">
                 {error}</p> : null}
               <form onSubmit={this.handleSubmit} className="signup-form" id="signupForm" name="signupForm">
 
                 <div className="form-group">
                   <input
-                    name="Firstname"
+                    name="firstname"
                     type="text"
-                    id="Firstname"
+                    id="firstname"
                     onChange={this.handleChange}
+                    value={firstname}
                     className="form-control"
                     placeholder="Firstname"
                     required />
@@ -109,6 +111,7 @@ export class SignUp extends Component {
                     type="text"
                     id="lastname"
                     onChange={this.handleChange}
+                    value={lastname}
                     className="form-control"
                     placeholder="lastname"
                     required />
@@ -116,12 +119,14 @@ export class SignUp extends Component {
 
                 <div className="form-group">
                   <input
-                    name="Phoneno"
+                    name="phoneno"
                     type="text"
-                    id="Phoneno"
+                    id="phoneno"
                     onChange={this.handleChange}
+                    value={phoneno}
                     className="form-control"
                     placeholder="Phone number"
+                    maxLength="12"
                     required />
                 </div>
 
@@ -131,6 +136,7 @@ export class SignUp extends Component {
                     type="text"
                     id="username"
                     onChange={this.handleChange}
+                    value={username}
                     className="form-control"
                     placeholder="username"
                     required />
@@ -142,6 +148,7 @@ export class SignUp extends Component {
                     type="email"
                     id="email"
                     onChange={this.handleChange}
+                    value={email}
                     className="form-control"
                     placeholder="email"
                     required />
@@ -153,6 +160,7 @@ export class SignUp extends Component {
                     type="password"
                     id="password"
                     onChange={this.handleChange}
+                    value={password}
                     className="form-control"
                     placeholder="password"
                     required />
@@ -163,7 +171,7 @@ export class SignUp extends Component {
                     type="submit"
                     value="Create account"
                     id="submitBtn"
-                    className={signingUp ? `${styles.disabled_btn}` : ''} />
+                    className={signingUp ? "disabled_btn" : ''} />
                   <p className="form-info">
                     Already have an account ?
                     <Link to="/signin"> Login</Link>

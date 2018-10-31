@@ -7,11 +7,8 @@ import {
   USER_FAILURE,
   CLEAR_ERROR
 } from './types';
-
 import setAuthToken from '../utils';
 
-// API URL
-const API = process.env.REACT_APP_API;
 
 export const userSuccess = body => ({
   type: USER_SUCCESS,
@@ -41,23 +38,36 @@ export const clearErrors = () => ({
  */
 export const signUpAction = userData => dispatch => {
   dispatch(userLoading(true));
+  const {
+    firstname, lastname, phoneno, username, email, password
+  } = userData;
   return axios
-    .post(`${API}/api/v1/auth/signup`, userData) // eslint-disable-line
+    .post(`${__API__}/api/v1/auth/signup`, {
+      firstname,
+      lastname,
+      phoneno: Number(phoneno),
+      username,
+      email,
+      password
+    })
     .then((res) => {
-      const { token } = res.data;
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', res.data.user);
-      setAuthToken(token);
-      dispatch(userLoading(false));
-      dispatch({
-        type: SET_CURRENT_USER,
-        user: jsonwebtoken.decode(token)
-      });
+      console.log(res);
+      if (res.data.success === true) {
+        const { token } = res.data;
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        setAuthToken(token);
+        dispatch(userLoading(false));
+        return dispatch({
+          type: SET_CURRENT_USER,
+          user: jsonwebtoken.decode(token)
+        });
+      }
     })
     .catch(error => {
       dispatch(userLoading(false));
-      if (error.res) {
-        return dispatch(userFailure(error.res.data));
+      if (typeof error.response !== undefined) {
+        return dispatch(userFailure(error.response.data.message));
       }
       return dispatch(
         userFailure({
@@ -77,22 +87,22 @@ export const signUpAction = userData => dispatch => {
 export const loginAction = userData => dispatch => {
   dispatch(userLoading(true));
   return axios
-    .post(`${API}/api/v1/auth/login`, userData)
+    .post(`${__API__}/api/v1/auth/login`, userData)
     .then((res) => {
-      const { token } = res.data;
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', res.data.user);
-      setAuthToken(token);
+      const { authToken } = res.data;
+      localStorage.setItem('token', res.data.authToken);
+      localStorage.setItem('user', JSON.stringify(res.data.signedInUser));
+      setAuthToken(authToken);
       dispatch(userLoading(false));
-      dispatch({
+      return dispatch({
         type: SET_CURRENT_USER,
-        user: jsonwebtoken.decode(token)
+        user: jsonwebtoken.decode(authToken)
       });
     })
     .catch(error => {
       dispatch(userLoading(false));
-      if (error.res) {
-        return dispatch(userFailure(error.res.data));
+      if (typeof error.response !== undefined) {
+        return dispatch(userFailure(error.response.data.message));
       }
       return dispatch(
         userFailure({

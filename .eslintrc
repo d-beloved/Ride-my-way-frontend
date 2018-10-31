@@ -16,7 +16,8 @@
 		"location": true,
 		"window": true,
 		"document": true,
-		"jest": true
+		"jest": true,
+		"__API__": true
 	},
 	"settings": {
 		"import/resolver": {

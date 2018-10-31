@@ -1,8 +1,6 @@
-import {
-  SET_CURRENT_USER,
-} from '../actions/types';
+import { SET_CURRENT_USER, USER_FAILURE, CLEAR_ERROR } from "../actions/types";
 
-import initialState from '../store/intialState';
+import initialState from "../store/intialState";
 
 const userReducer = (state = initialState.users, action) => {
   switch (action.type) {
@@ -11,6 +9,16 @@ const userReducer = (state = initialState.users, action) => {
       ...state,
       user: action.user,
       authenticated: true
+    };
+  case USER_FAILURE:
+    return {
+      ...state,
+      error: action.payload
+    };
+  case CLEAR_ERROR:
+    return {
+      ...state,
+      error: ""
     };
   default:
     return state;

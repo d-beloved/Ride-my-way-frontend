@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginAction, clearErrors } from '../../actions/userActions';
-import styles from '../Signup/Signup.module.css';
 import background from "../../../public/images/cabbie.jpg";
 
 /**
@@ -11,7 +10,7 @@ import background from "../../../public/images/cabbie.jpg";
  *
  * @classdesc log a user in
  */
-export class Signin extends Component {
+class Signin extends Component {
   /**
    *
    * @param {Object} props the properties of the class component
@@ -50,6 +49,7 @@ export class Signin extends Component {
   }
 
   render() {
+    const { email, password } = this.state;
     const { error, signingIn } = this.props;
     if (localStorage.token) {
       this.props.history.push('/allrides');
@@ -85,7 +85,7 @@ export class Signin extends Component {
 
           <section className="section-form container">
             <div className="row card-form">
-              {error ? <p className={styles.invalidCredential}>
+              {error ? <p className="invalidCredential">
                 {error}</p> : null}
               <form onSubmit={this.handleSubmit} className="signup-form" id="signinForm" name="signinForm">
 
@@ -95,6 +95,7 @@ export class Signin extends Component {
                     type="email"
                     id="email"
                     onChange={this.handleChange}
+                    value={email}
                     className="form-control"
                     placeholder="email"
                     required />
@@ -106,6 +107,7 @@ export class Signin extends Component {
                     type="password"
                     id="password"
                     onChange={this.handleChange}
+                    value={password}
                     className="form-control"
                     placeholder="password"
                     required />
@@ -115,7 +117,7 @@ export class Signin extends Component {
                   <input
                     type="submit"
                     value="Login"
-                    className={signingIn ? `${styles.disabled_btn}` : ''} />
+                    className={signingIn ? "disabled_btn" : ''} />
                   <p className="form-info">
                     Not registered ? create an account
                     <Link to="/signup"> Signup</Link>
