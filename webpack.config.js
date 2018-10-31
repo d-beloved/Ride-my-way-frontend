@@ -1,11 +1,17 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
-module.exports = {
-  entry: "./src/index.js",
+const config = {
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    historyApiFallback: true,
+  },
+  entry: {
+    filename: './src/index.js',
+  },
   output: {
-    path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    publicPath: '/',
+    filename: 'build.js',
   },
   module: {
     rules: [
@@ -13,36 +19,46 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        },
+          loader: "babel-loader",
+        }
       },
       {
-        test: /\.css$/,
+        test: /\.html$/,
         use: [
           {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
+            loader: "html-loader",
             options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
-              sourceMap: true,
               minimize: true
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader",
+        ]
+      },
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8000,
+            name: 'file-loader?name=/public/images/[name].[ext]'
+          }
+        }, {
+          loader: 'file-loader',
+        }]
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true
-  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html"
-    })
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+    }),
   ]
 };
+
+module.exports = config;

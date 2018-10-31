@@ -15,7 +15,7 @@ export default class Homepage extends Component {
   render() {
     return (
       <div className="content">
-        <img src="../src/public/images/cabbie.jpg"
+        <img src="/public/images/cabbie.jpg"
         className="bg" />
         <header>
           <nav className="container">
