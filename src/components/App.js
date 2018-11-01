@@ -5,6 +5,8 @@ import Homepage from './Homepage/Homepage';
 import SignUp from './Signup/Signup';
 import Signin from './Signin/Signin';
 import AllRides from './AllRides';
+import CreateRide from './CreateRide';
+import ProtectedRoute from './ProtectedRoute';
 
 /**
  * @class App
@@ -25,6 +27,7 @@ class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/allrides" component={AllRides} />
+            <ProtectedRoute path="/createride" component={CreateRide} />
           </Switch>
         </div>
       </Router>

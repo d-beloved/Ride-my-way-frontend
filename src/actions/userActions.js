@@ -5,7 +5,8 @@ import {
   USER_LOADING,
   USER_SUCCESS,
   USER_FAILURE,
-  CLEAR_ERROR
+  CLEAR_ERROR,
+  LOGOUT_SUCCESS
 } from './types';
 import setAuthToken from '../utils';
 
@@ -27,6 +28,10 @@ export const userFailure = error => ({
 
 export const clearErrors = () => ({
   type: CLEAR_ERROR
+});
+
+const logoutUser = () => ({
+  type: LOGOUT_SUCCESS
 });
 
 /**
@@ -51,7 +56,6 @@ export const signUpAction = userData => dispatch => {
       password
     })
     .then((res) => {
-      console.log(res);
       if (res.data.success === true) {
         const { token } = res.data;
         localStorage.setItem('token', res.data.token);
@@ -110,4 +114,10 @@ export const loginAction = userData => dispatch => {
         })
       );
     });
+};
+
+export const logoutAction = () => dispatch => {
+  dispatch(logoutUser());
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
 };

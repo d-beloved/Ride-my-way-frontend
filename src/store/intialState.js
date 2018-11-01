@@ -10,6 +10,11 @@ const initialState = {
       isLoading: false,
       error: false,
       data: []
+    },
+    createRides: {
+      data: {},
+      isLoading: false,
+      error: ""
     }
   }
 };
