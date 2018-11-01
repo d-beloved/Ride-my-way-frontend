@@ -8,8 +8,8 @@ import { SET_CURRENT_USER } from './actions/types';
 import setAuthToken from './utils';
 import '../public/styles/main.css';
 import '../public/styles/normalize.css';
-import '../public/styles/rides.css';
 import '../public/styles/style.css';
+import '../public/styles/ridescard.css';
 
 const store = configureStore();
 

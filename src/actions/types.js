@@ -5,3 +5,6 @@ export const USER_LOADING = 'user_loading';
 export const USER_FAILURE = 'user_failure';
 export const SAVE_PROFILE_IMAGE = 'save_profile_image';
 export const CLEAR_ERROR = 'clear_error';
+export const RIDES_LOADING = 'rides_loading';
+export const RIDES_ERROR = 'rides_error';
+export const RIDES_SUCCESS = 'rides_success';
