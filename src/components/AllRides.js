@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import getAllRides from '../actions/ridesAction';
+import { getAllRides } from '../actions/ridesAction';
 import Rides from './RideCard';
 import background from "../../public/images/cabbie.jpg";
 import Loader from './Loader';
@@ -62,6 +62,7 @@ class AllRides extends Component {
       {
         allRides.map(ride => (
           <Rides
+            key={ride.rideid}
             rideid={ride.rideid}
             date={ride.date}
             departurelocation={ride.departurelocation}
@@ -100,8 +101,7 @@ class AllRides extends Component {
                 </button>
               </div>
               <ul className="main-nav" id="navbar-collapse">
-                <li><Link to="">Profile</Link></li>
-                <li><Link to="">Logout</Link></li>
+                <li><Link to="/createride">Offer Ride</Link></li>
               </ul>
             </div>
           </nav>

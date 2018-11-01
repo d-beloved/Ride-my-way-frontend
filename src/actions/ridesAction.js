@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { RIDES_ERROR, RIDES_LOADING, RIDES_SUCCESS } from './types';
+import {
+  RIDES_ERROR,
+  RIDES_LOADING,
+  RIDES_SUCCESS,
+  CREATE_RIDE_ERROR,
+  CREATE_RIDE_LOADING,
+  CREATE_RIDE_SUCCESS,
+  CLEAR_ERROR
+} from './types';
 
 const fetchRidesSuccess = payload => ({
   type: RIDES_SUCCESS,
@@ -16,7 +24,26 @@ const fetchRidesError = payload => ({
   payload
 });
 
-const getAllRides = () => dispatch => {
+const createRideError = payload => ({
+  type: CREATE_RIDE_ERROR,
+  payload
+});
+
+const createRideLoading = payload => ({
+  type: CREATE_RIDE_LOADING,
+  payload
+});
+
+const createRideSuccess = payload => ({
+  type: CREATE_RIDE_SUCCESS,
+  payload
+});
+
+export const clearErrors = () => ({
+  type: CLEAR_ERROR
+});
+
+export const getAllRides = () => dispatch => {
   dispatch(fetchRidesLoading(true));
   return axios
     .get(`${__API__}/api/v1/rides`)
@@ -30,4 +57,31 @@ const getAllRides = () => dispatch => {
     .catch(error => dispatch(fetchRidesError(error)));
 };
 
-export default getAllRides;
+export const createRide = userData => dispatch => {
+  const { token } = localStorage;
+
+  dispatch(createRideLoading(true));
+  const {
+    message, destination, departurelocation, date
+  } = userData;
+  return axios
+    .post(`${__API__}/api/v1/users/rides`, {
+      message,
+      destination,
+      departurelocation,
+      date
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then((res) => {
+      if (res.data.success === true) {
+        dispatch(createRideLoading(false));
+        dispatch(createRideSuccess(res.data));
+        return res.data;
+      }
+      return dispatch(createRideError(res.data.error));
+    })
+    .catch(error => dispatch(createRideError(error.response.data.message)));
+};

@@ -1,4 +1,10 @@
-import { SET_CURRENT_USER, USER_FAILURE, CLEAR_ERROR } from "../actions/types";
+import {
+  SET_CURRENT_USER,
+  USER_FAILURE,
+  CLEAR_ERROR,
+  USER_LOADING,
+  LOGOUT_SUCCESS
+} from "../actions/types";
 
 import initialState from "../store/intialState";
 
@@ -8,7 +14,7 @@ const userReducer = (state = initialState.users, action) => {
     return {
       ...state,
       user: action.user,
-      authenticated: true
+      isAuthenticated: true
     };
   case USER_FAILURE:
     return {
@@ -19,6 +25,16 @@ const userReducer = (state = initialState.users, action) => {
     return {
       ...state,
       error: ""
+    };
+  case USER_LOADING:
+    return {
+      ...state,
+      loading: action.payload
+    };
+  case LOGOUT_SUCCESS:
+    return {
+      ...state,
+      isAuthenticated: false
     };
   default:
     return state;

@@ -251,6 +251,7 @@ nav .row {
 .main-nav li {
   margin: 0 auto 2.3rem;
   width: fit-content;
+  color: white;
 }
 
 .main-nav li a:link,
