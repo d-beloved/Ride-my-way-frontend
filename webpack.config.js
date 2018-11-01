@@ -39,7 +39,7 @@ const config = {
         ]
       },
       {
-        test: /\.css$/,
+        test: /\.(css)$/,
         use: [
           {
             loader: "style-loader"
@@ -53,7 +53,7 @@ const config = {
               sourceMap: true,
               minimize: true
             }
-          },
+          }
         ]
       },
       {

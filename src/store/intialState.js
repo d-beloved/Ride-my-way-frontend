@@ -4,6 +4,13 @@ const initialState = {
     loading: false,
     error: "",
     isAuthenticated: false
+  },
+  rides: {
+    allRides: {
+      isLoading: false,
+      error: false,
+      data: []
+    }
   }
 };
 
