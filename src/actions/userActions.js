@@ -41,11 +41,16 @@ const logoutUser = () => ({
  *
  * @return {object} dispatch object
  */
-export const signUpAction = userData => dispatch => {
+
+export const signUpAction = (
+  firstname,
+  lastname,
+  phoneno,
+  username,
+  email,
+  password
+) => dispatch => {
   dispatch(userLoading(true));
-  const {
-    firstname, lastname, phoneno, username, email, password
-  } = userData;
   return axios
     .post(`${__API__}/api/v1/auth/signup`, {
       firstname,

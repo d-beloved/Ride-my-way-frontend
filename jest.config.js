@@ -22,7 +22,9 @@ module.exports = {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    "src/**/*.js"
+    "src/**/*.js",
+    "!src/store/index.js",
+    "!src/index.js"
   ],
 
   // The directory where Jest should output its coverage files
@@ -34,12 +36,12 @@ module.exports = {
   // ],
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    "json",
+    "text",
+    "lcov",
+    "clover"
+  ],
 
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: null,
@@ -57,7 +59,9 @@ module.exports = {
   // globalTeardown: null,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  globals: {
+    __API__: true
+  },
 
   // An array of directory names to be searched recursively up from the requiring module's location
   // moduleDirectories: [
