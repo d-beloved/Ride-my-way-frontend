@@ -68,12 +68,6 @@ class Signin extends Component {
                     className="brand logo"
                     to="/">Ride-My-Way
                 </Link>
-                  <button
-                    type="button"
-                    id="navbar-toggler"
-                    className="nav-toggle">
-                    <i className="mdi mdi-view-sequential"></i>
-                  </button>
                 </div>
                 <ul className="main-nav" id="navbar-collapse">
                   <li><Link to="/allrides">All Rides</Link></li>

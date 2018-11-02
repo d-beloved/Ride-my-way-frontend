@@ -82,10 +82,34 @@ ul li {
 
 .row.rides {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .card {
+  margin: 10px;
   background: white;
   padding: 20px;
+}
+
+@media only screen and (max-width: 900px) {
+  .row.rides {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .row.rides {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media only screen and (max-width: 616px) {
+  .row.rides {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-items: center;
+  }
 }
