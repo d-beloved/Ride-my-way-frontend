@@ -49,7 +49,6 @@ class AllRides extends Component {
    * @returns {object} returns an object
    */
   renderRides() {
-    console.log(this.props);
     const allRides = this.props.rides;
     if (allRides.length < 1) {
       return (
