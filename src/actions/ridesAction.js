@@ -57,13 +57,9 @@ export const getAllRides = () => dispatch => {
     .catch(error => dispatch(fetchRidesError(error)));
 };
 
-export const createRide = userData => dispatch => {
+export const createRide = (message, destination, departurelocation, date) => dispatch => {
   const { token } = localStorage;
-
   dispatch(createRideLoading(true));
-  const {
-    message, destination, departurelocation, date
-  } = userData;
   return axios
     .post(`${__API__}/api/v1/users/rides`, {
       message,
@@ -78,10 +74,12 @@ export const createRide = userData => dispatch => {
     .then((res) => {
       if (res.data.success === true) {
         dispatch(createRideLoading(false));
-        dispatch(createRideSuccess(res.data));
+        return dispatch(createRideSuccess(res.data));
         return res.data;
       }
       return dispatch(createRideError(res.data.error));
     })
-    .catch(error => dispatch(createRideError(error.response.data.message)));
+    .catch(error => {
+      dispatch(createRideError(error.res.data.message));
+    });
 };

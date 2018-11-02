@@ -4,13 +4,13 @@
 	"env": {
 		"node": true,
 		"es6": true,
-		"mocha": true
+		"mocha": true,
+		"jest": true
 	},
 	"globals": {
 		"fetch": true,
 		"FormData": true,
 		"localStorage": true,
-		"toastr": true,
 		"FileReader": true,
 		"Image": true,
 		"location": true,
