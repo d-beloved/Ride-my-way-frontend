@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - "stable"
+env:
+  global:
+    - CC_TEST_REPORTER_ID=48248ae89edc4aad5a94fd95f2fa0fbb0d60a100b9ce5a77a1b681b61e7fe830
 cache:
   directories
   - node_modules
@@ -16,3 +19,4 @@ after_script:
   - npm run coveralls
   - npm run coverage
   - npm run report-coverage
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
