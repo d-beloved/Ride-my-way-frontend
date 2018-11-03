@@ -1,5 +1,6 @@
 # Ride-my-way-frontend
-[![Build Status](https://travis-ci.org/d-beloved/Ride-my-way-frontend.svg?branch=develop)](https://travis-ci.org/d-beloved/Ride-my-way-frontend) [![Test Coverage](https://api.codeclimate.com/v1/badges/ea8c88e922e0f0c20e63/test_coverage)](https://codeclimate.com/github/d-beloved/Ride-my-way-frontend/test_coverage) [![Maintainability](https://api.codeclimate.com/v1/badges/ea8c88e922e0f0c20e63/maintainability)](https://codeclimate.com/github/d-beloved/Ride-my-way-frontend/maintainability)
+[![Build Status](https://travis-ci.org/d-beloved/Ride-my-way-frontend.svg?branch=develop)](https://travis-ci.org/d-beloved/Ride-my-way-frontend) [![codecov](https://codecov.io/gh/d-beloved/Ride-my-way-frontend/branch/develop/graph/badge.svg)](https://codecov.io/gh/d-beloved/Ride-my-way-frontend) 
+ [![Maintainability](https://api.codeclimate.com/v1/badges/ea8c88e922e0f0c20e63/maintainability)](https://codeclimate.com/github/d-beloved/Ride-my-way-frontend/maintainability)
 
 This is a carpooling application that allows you to share your ride with others, it also gives you the privilege of joining a ride with someone going your way.
 
