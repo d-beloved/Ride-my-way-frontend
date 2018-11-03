@@ -7,6 +7,7 @@ import Signin from './Signin/Signin';
 import AllRides from './AllRides';
 import CreateRide from './CreateRide';
 import ProtectedRoute from './ProtectedRoute';
+import OneRide from './OneRide';
 
 /**
  * @class App
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/allrides" component={AllRides} />
             <ProtectedRoute path="/createride" component={CreateRide} />
+            <ProtectedRoute path="/allrides/:rideid" component={OneRide} />
           </Switch>
         </div>
       </Router>

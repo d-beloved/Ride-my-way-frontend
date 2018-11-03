@@ -51,7 +51,17 @@ describe('User actions', () => {
       const expectedActions = [
         { type: types.USER_LOADING, payload: true },
         { type: types.USER_LOADING, payload: false },
-        { type: types.SET_CURRENT_USER, user: null }
+        {
+          type: types.SET_CURRENT_USER,
+          payload:
+            {
+              user:
+              {
+                firstname: "Morayo",
+                token: "user.authtoken"
+              }
+            },
+        }
       ];
       const store = mockStore({ data: [] });
       return store.dispatch(loginAction()).then(() => {

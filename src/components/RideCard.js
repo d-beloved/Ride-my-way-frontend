@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
 /**
- * @class AllRides
+ * @class Rides
  *
  * @classdesc Rides page component
  *
@@ -20,22 +20,7 @@ class Rides extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      redirectOnClick: false
-    };
-    this.handleViewClick = this.handleViewClick.bind(this);
-  }
-
-  /**
-   * @description - handles the view click event
-   *
-   * @param  {object} event the event for the content field
-   *
-   * @return {void} no return or void
-   */
-  handleViewClick(event) {
-    event.preventDefault();
-    this.setState({ redirectOnClick: true });
+    this.state = {};
   }
 
   /**
@@ -49,22 +34,20 @@ class Rides extends Component {
     } = this.props;
 
     return (
-      this.state.redirectOnClick ?
-        <Redirect to={`/allrides/${rideid}`} /> :
-        <div className="card">
-          <div className="top">
-            <h1>{message}</h1>
-          </div>
-          <div className="bottom">
-            <p><span>Driver:</span> {driverdetails}</p>
-            <p><span>from</span> {departurelocation}</p>
-            <p><span>To:</span> {destination}</p>
-            <p><span>Time</span> {moment(date).format('LLLL')}</p>
-            <div className="sign">
-              <a onClick={this.handleViewClick} className="button">View details</a>
-            </div>
+      <div className="card">
+        <div className="top">
+          <h1>{message}</h1>
+        </div>
+        <div className="bottom">
+          <p><span>Driver:</span> {driverdetails}</p>
+          <p><span>from</span> {departurelocation}</p>
+          <p><span>To:</span> {destination}</p>
+          <p><span>Time</span> {moment(date).format('LLLL')}</p>
+          <div className="sign">
+            <Link to={`/allrides/${rideid}`} className="button">View details</Link>
           </div>
         </div>
+      </div>
     );
   }
 }

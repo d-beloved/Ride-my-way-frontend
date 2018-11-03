@@ -1,4 +1,4 @@
-import { allRides, createRide } from '../../reducers/ridesReducers';
+import { allRides, createRide, oneRide } from '../../reducers/ridesReducers';
 import * as types from '../../actions/types';
 import index from '../../reducers/index';
 
@@ -60,6 +60,56 @@ describe("Ride reducers", () => {
     };
     expect(allRides({}, action)).toEqual({
       data: action.payload
+    });
+  });
+
+  it("should return initial state", () => {
+    expect(oneRide(undefined, {})).toEqual({
+      ride: {},
+      isLoading: false,
+      error: ""
+    });
+  });
+  it("should return one ride loading", () => {
+    const action = {
+      type: types.ONE_RIDE_LOADING,
+      payload: { isLoading: true }
+    };
+    expect(oneRide({}, action)).toEqual({
+      isLoading: action.payload
+    });
+  });
+
+  it("should return one ride error", () => {
+    const action = {
+      type: types.ONE_RIDE_ERROR,
+      payload: "error"
+    };
+    expect(oneRide({}, action)).toEqual({
+      error: action.payload
+    });
+  });
+
+  it("should return one ride success", () => {
+    const action = {
+      type: types.ONE_RIDE_SUCCESS,
+      payload: {
+        rides: [
+          {
+            createdat: "2018-10-31T14:37:11.998Z",
+            date: "2018-07-27T00:00:00.000Z",
+            departurelocation: "MMA 2 terminal",
+            destination: "Los Angeles",
+            driverdetails: "David Keji",
+            message: "Dave travels",
+            rideid: 3,
+            userid: 1
+          }
+        ]
+      }
+    };
+    expect(oneRide({}, action)).toEqual({
+      ride: action.payload
     });
   });
 

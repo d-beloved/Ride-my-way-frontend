@@ -15,6 +15,11 @@ const initialState = {
       data: {},
       isLoading: false,
       error: ""
+    },
+    oneRide: {
+      ride: {},
+      isLoading: false,
+      error: ""
     }
   }
 };
