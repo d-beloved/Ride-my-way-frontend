@@ -100,7 +100,7 @@ class CreateRide extends Component {
                   onChange={this.handleChange}
                   value={message}
                   className="form-control"
-                  placeholder="Drop a message (e.g an highlight of your destination)"
+                  placeholder="Drop a message"
                   required />
               </div>
 
@@ -136,7 +136,7 @@ class CreateRide extends Component {
                   onChange={this.handleChange}
                   value={date}
                   className="form-control"
-                  placeholder="please enter the date of departure in this format yyyy-mm-dd"
+                  placeholder="yyyy-mm-dd"
                   pattern="(?:20|21)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
                   required />
               </div>

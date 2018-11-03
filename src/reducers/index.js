@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 import userReducer from './userReducers';
-import { allRides, createRide } from './ridesReducers';
+import { allRides, createRide, oneRide } from './ridesReducers';
 
 const rootReducer = combineReducers({
   users: userReducer,
   allRides,
-  createRide
+  createRide,
+  oneRide
 });
 
 export default rootReducer;

@@ -4,7 +4,10 @@ import {
   RIDES_SUCCESS,
   CREATE_RIDE_ERROR,
   CREATE_RIDE_LOADING,
-  CREATE_RIDE_SUCCESS
+  CREATE_RIDE_SUCCESS,
+  ONE_RIDE_ERROR,
+  ONE_RIDE_LOADING,
+  ONE_RIDE_SUCCESS
 } from "../actions/types";
 import initialState from "../store/intialState";
 
@@ -24,6 +27,28 @@ export const allRides = (state = initialState.rides.allRides, action) => {
     return {
       ...state,
       error: action.payload
+    };
+  default:
+    return state;
+  }
+};
+
+export const oneRide = (state = initialState.rides.oneRide, action) => {
+  switch (action.type) {
+  case ONE_RIDE_ERROR:
+    return {
+      ...state,
+      error: action.payload
+    };
+  case ONE_RIDE_LOADING:
+    return {
+      ...state,
+      isLoading: action.payload
+    };
+  case ONE_RIDE_SUCCESS:
+    return {
+      ...state,
+      ride: action.payload
     };
   default:
     return state;

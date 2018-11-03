@@ -6,7 +6,8 @@ import expect from 'expect';
 
 import {
   getAllRides,
-  createRide
+  createRide,
+  getOneRide
 } from '../../actions/ridesAction';
 import * as types from '../../actions/types';
 
@@ -109,6 +110,32 @@ describe('Ride Actions offers', () => {
       ];
       const store = mockStore({ data: {} });
       return store.dispatch(createRide()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
+  describe('get one ride offer', () => {
+    it('dispatches the view a ride offer action', () => {
+      moxios.onGet(`${__API__}/api/v1/rides/1`).reply(200, {
+        success: true,
+        ride: {
+          destination: "Los Angeles"
+        }
+      });
+
+      const expectedActions = [
+        { type: types.ONE_RIDE_LOADING, payload: true },
+        { type: types.ONE_RIDE_LOADING, payload: false },
+        {
+          type: types.ONE_RIDE_SUCCESS,
+          payload: {
+            destination: "Los Angeles"
+          }
+        }
+      ];
+      const store = mockStore({ data: {} });
+      return store.dispatch(getOneRide(1)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });

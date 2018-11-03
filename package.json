@@ -12,7 +12,7 @@
     "test": "jest --verbose --coverage --detectOpenHandles --forceExit",
     "test:watch": "npm test -- --watch",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov npm test"
   },
   "repository": {
@@ -68,7 +68,7 @@
     "axios-mock-adapter": "^1.15.0",
     "coveralls": "^3.0.2",
     "expect": "^23.6.0",
-    "jsonwebtoken": "^8.3.0",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
     "moxios": "^0.4.0",
     "prop-types": "^15.6.2",

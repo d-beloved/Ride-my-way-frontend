@@ -1,14 +1,19 @@
-language: node_js
+language:
+  node_js
 node_js:
 - "stable"
+install:
+  - npm install -g codecov
+  - npm install -q --no-color --no-progress
+script:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
 env:
   global:
     - CC_TEST_REPORTER_ID=48248ae89edc4aad5a94fd95f2fa0fbb0d60a100b9ce5a77a1b681b61e7fe830
 cache:
   directories
   - node_modules
-install:
-- npm install -q --no-color --no-progress
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter

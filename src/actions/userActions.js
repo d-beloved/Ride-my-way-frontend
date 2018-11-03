@@ -1,18 +1,15 @@
 import axios from 'axios';
-import jsonwebtoken from 'jsonwebtoken';
 import {
   SET_CURRENT_USER,
   USER_LOADING,
-  USER_SUCCESS,
   USER_FAILURE,
   CLEAR_ERROR,
   LOGOUT_SUCCESS
 } from './types';
-import setAuthToken from '../utils';
 
 
-export const userSuccess = body => ({
-  type: USER_SUCCESS,
+export const setCurrentUser = body => ({
+  type: SET_CURRENT_USER,
   payload: body
 });
 
@@ -62,15 +59,10 @@ export const signUpAction = (
     })
     .then((res) => {
       if (res.data.success === true) {
-        const { token } = res.data;
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        setAuthToken(token);
         dispatch(userLoading(false));
-        return dispatch({
-          type: SET_CURRENT_USER,
-          user: jsonwebtoken.decode(token)
-        });
+        return dispatch(setCurrentUser(res.data));
       }
     })
     .catch(error => {
@@ -98,15 +90,10 @@ export const loginAction = userData => dispatch => {
   return axios
     .post(`${__API__}/api/v1/auth/login`, userData)
     .then((res) => {
-      const { authToken } = res.data;
       localStorage.setItem('token', res.data.authToken);
       localStorage.setItem('user', JSON.stringify(res.data.signedInUser));
-      setAuthToken(authToken);
       dispatch(userLoading(false));
-      return dispatch({
-        type: SET_CURRENT_USER,
-        user: jsonwebtoken.decode(authToken)
-      });
+      return dispatch(setCurrentUser(res.data));
     })
     .catch(error => {
       dispatch(userLoading(false));

@@ -24,11 +24,13 @@ module.exports = {
   collectCoverageFrom: [
     "src/**/*.js",
     "!src/store/index.js",
+    "!src/utils/index.js",
     "!src/index.js"
   ],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: "./coverage/",
+  collectCoverage: true,
 
   // An array of regexp pattern strings used to skip coverage collection
   // coveragePathIgnorePatterns: [
