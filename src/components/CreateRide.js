@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -20,7 +20,6 @@ class CreateRide extends Component {
    */
   constructor(props) {
     super(props);
-
     this.state = {
       message: "",
       destination: "",
@@ -43,7 +42,8 @@ class CreateRide extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { props } = this
-    props.dispatch(createRide(this.state))
+    const {message, destination, departurelocation, date} = this.state;
+    props.dispatch(createRide(message, destination, departurelocation, date))
       .then((data) => {
         if (data.success === true) {
           location.pathname = "/allrides";
@@ -62,10 +62,11 @@ class CreateRide extends Component {
   }
 
   render() {
-    const { message, departurelocation, destination, date } = this.state;
+    const { message, destination, departurelocation, date } = this.state;
     const { error, creatingRide } = this.props;
 
     return (
+      <Fragment>
       <div className="content">
         <img src={background}
           className="bg" />
@@ -88,8 +89,8 @@ class CreateRide extends Component {
 
         <section className="section-form container">
           <div className="row card-form">
-            {error ? <p className="invalidCredential">
-              {error}</p> : null}
+          {error ? <p className="invalidCredential">
+                {error}</p> : null}
             <form onSubmit={this.handleSubmit} className="signup-form" id="createRide">
 
               <div className="form-group">
@@ -144,14 +145,15 @@ class CreateRide extends Component {
               <div className="submit-btn">
                 <input
                   type="submit"
-                  value="Create Ride offer"
+                  value={creatingRide ? "" : "Create Ride offer"}
                   id="submitBtn"
-                  className={creatingRide ? "disabled_btn" : ''} />
+                  className={creatingRide ? "roller" : ''} />
               </div>
             </form>
           </div>
         </section>
       </div>
+      </Fragment>
     )
   }
 }
@@ -162,6 +164,7 @@ CreateRide.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    data: state.createRide.data,
     error: state.createRide.error,
     creatingRide: state.createRide.isLoading
   };

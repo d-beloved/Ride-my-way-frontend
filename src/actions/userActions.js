@@ -85,10 +85,14 @@ export const signUpAction = (
  *
  * @return {object} dispatch object
  */
-export const loginAction = userData => dispatch => {
+
+export const loginAction = (email, password) => dispatch => {
   dispatch(userLoading(true));
   return axios
-    .post(`${__API__}/api/v1/auth/login`, userData)
+    .post(`${__API__}/api/v1/auth/login`, {
+      email,
+      password
+    })
     .then((res) => {
       localStorage.setItem('token', res.data.authToken);
       localStorage.setItem('user', JSON.stringify(res.data.signedInUser));

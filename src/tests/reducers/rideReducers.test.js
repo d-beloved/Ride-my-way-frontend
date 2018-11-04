@@ -1,4 +1,9 @@
-import { allRides, createRide, oneRide } from '../../reducers/ridesReducers';
+import {
+  allRides,
+  createRide,
+  oneRide,
+  requestRide
+} from '../../reducers/ridesReducers';
 import * as types from '../../actions/types';
 import index from '../../reducers/index';
 
@@ -149,6 +154,43 @@ describe("Ride reducers", () => {
     };
     expect(createRide({}, action)).toEqual({
       data: action.payload
+    });
+  });
+
+  it("should return initial state", () => {
+    expect(requestRide(undefined, {})).toEqual({
+      requested: false,
+      requesting: false,
+      error: ''
+    });
+  });
+  it("should return request loading", () => {
+    const action = {
+      type: types.REQUEST_RIDE_LOADING,
+      payload: { requesting: true }
+    };
+    expect(requestRide({}, action)).toEqual({
+      requesting: action.payload
+    });
+  });
+
+  it("should return request ride error", () => {
+    const action = {
+      type: types.REQUEST_RIDE_ERROR,
+      payload: "error"
+    };
+    expect(requestRide({}, action)).toEqual({
+      error: action.payload
+    });
+  });
+
+  it("should return set request status", () => {
+    const action = {
+      type: types.SET_REQUEST_STATUS,
+      payload: { requested: true }
+    };
+    expect(requestRide({}, action)).toEqual({
+      requested: action.payload
     });
   });
 });

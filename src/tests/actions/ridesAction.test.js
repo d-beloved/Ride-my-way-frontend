@@ -7,7 +7,8 @@ import expect from 'expect';
 import {
   getAllRides,
   createRide,
-  getOneRide
+  getOneRide,
+  requestRide
 } from '../../actions/ridesAction';
 import * as types from '../../actions/types';
 
@@ -136,6 +137,22 @@ describe('Ride Actions offers', () => {
       ];
       const store = mockStore({ data: {} });
       return store.dispatch(getOneRide(1)).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
+  describe('request for a ride', () => {
+    it('dispatches the request a ride action', () => {
+      moxios.onPost(`${__API__}/api/v1/rides/1/requests`).reply(201, {
+        success: true
+      });
+
+      const expectedActions = [
+        { type: types.REQUEST_RIDE_LOADING, payload: true },
+      ];
+      const store = mockStore({ data: {} });
+      return store.dispatch(requestRide(1)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });

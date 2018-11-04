@@ -1,4 +1,5 @@
 import axios from 'axios';
+import swal from 'sweetalert';
 import {
   RIDES_ERROR,
   RIDES_LOADING,
@@ -9,7 +10,10 @@ import {
   CLEAR_ERROR,
   ONE_RIDE_ERROR,
   ONE_RIDE_LOADING,
-  ONE_RIDE_SUCCESS
+  ONE_RIDE_SUCCESS,
+  REQUEST_RIDE_LOADING,
+  REQUEST_RIDE_ERROR,
+  SET_REQUEST_STATUS
 } from './types';
 
 const fetchRidesSuccess = payload => ({
@@ -40,6 +44,21 @@ const fetchOneRideLoading = payload => ({
 const fetchOneRideSuccess = payload => ({
   type: ONE_RIDE_SUCCESS,
   payload
+});
+
+const requestRideLoading = isRequesting => ({
+  type: REQUEST_RIDE_LOADING,
+  payload: isRequesting
+});
+
+const setRequestStatus = status => ({
+  type: SET_REQUEST_STATUS,
+  payload: status
+});
+
+const requestRideError = error => ({
+  type: REQUEST_RIDE_ERROR,
+  payload: error
 });
 
 const createRideError = payload => ({
@@ -94,6 +113,36 @@ export const getOneRide = rideid => dispatch => {
     .catch(error => dispatch(fetchOneRideError(error)));
 };
 
+export const requestRide = rideId => dispatch => {
+  dispatch(requestRideLoading(true));
+  const { token } = localStorage;
+  return axios
+    .post(`${__API__}/api/v1/rides/${rideId}/requests`, {}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      if (res.data.success === 'true') {
+        dispatch(requestRideLoading(false));
+        dispatch(setRequestStatus(true));
+        return swal('Ride request successful!', '', 'success');
+      }
+    })
+    .catch(error => {
+      dispatch(requestRideLoading(false));
+      if (typeof error.response !== undefined) {
+        dispatch(requestRideError(error.response.data.message));
+        return swal('', `${error.response.data.message}`, 'info');
+      }
+      return dispatch(
+        requestRideError({
+          error: { message: "An error occured" }
+        })
+      );
+    });
+};
+
 export const createRide = (message, destination, departurelocation, date) => dispatch => {
   const { token } = localStorage;
   dispatch(createRideLoading(true));
@@ -105,18 +154,26 @@ export const createRide = (message, destination, departurelocation, date) => dis
       date
     }, {
       headers: {
-        Authorization: `Bearer ${token}`
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       }
     })
     .then((res) => {
       if (res.data.success === true) {
         dispatch(createRideLoading(false));
-        return dispatch(createRideSuccess(res.data));
+        dispatch(createRideSuccess(res.data));
         return res.data;
       }
-      return dispatch(createRideError(res.data.error));
     })
     .catch(error => {
-      dispatch(createRideError(error.res.data.message));
+      dispatch(createRideLoading(false));
+      if (typeof error.response !== undefined) {
+        return dispatch(createRideError(error.response.data.message));
+      }
+      return dispatch(
+        createRideError({
+          error: { message: "An error occured" }
+        })
+      );
     });
 };

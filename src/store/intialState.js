@@ -21,6 +21,11 @@ const initialState = {
       isLoading: false,
       error: ""
     }
+  },
+  request: {
+    requested: false,
+    requesting: false,
+    error: ''
   }
 };
 

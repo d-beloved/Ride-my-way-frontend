@@ -1,7 +1,6 @@
 export const SET_CURRENT_USER = 'set_current_user';
 export const USER_LOADING = 'user_loading';
 export const USER_FAILURE = 'user_failure';
-export const SAVE_PROFILE_IMAGE = 'save_profile_image';
 export const CLEAR_ERROR = 'clear_error';
 export const RIDES_LOADING = 'rides_loading';
 export const RIDES_ERROR = 'rides_error';
@@ -13,3 +12,6 @@ export const LOGOUT_SUCCESS = 'logout_success';
 export const ONE_RIDE_LOADING = 'one_ride_loading';
 export const ONE_RIDE_ERROR = 'one_ride_error';
 export const ONE_RIDE_SUCCESS = 'one_ride_success';
+export const REQUEST_RIDE_LOADING = 'request_ride_loading';
+export const REQUEST_RIDE_ERROR = 'request_ride_error';
+export const SET_REQUEST_STATUS = 'set_request_status';

@@ -65,7 +65,7 @@ class AllRides extends Component {
             rideid={ride.rideid}
             date={ride.date}
             departurelocation={ride.departurelocation}
-            destination={ride.departurelocation}
+            destination={ride.destination}
             message={ride.message}
             driverdetails={ride.driverdetails}
           />

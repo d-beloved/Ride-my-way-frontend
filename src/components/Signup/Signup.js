@@ -42,8 +42,9 @@ class SignUp extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { firstname, lastname, phoneno, username, email, password } = this.state;
     const { props } = this
-    props.dispatch(signUpAction(this.state));
+    props.dispatch(signUpAction(firstname, lastname, phoneno, username, email, password));
   }
 
   handleChange(event) {
@@ -163,9 +164,9 @@ class SignUp extends Component {
                 <div className="submit-btn">
                   <input
                     type="submit"
-                    value="Create account"
+                    value={signingUp ? "" : "Create account"}
                     id="submitBtn"
-                    className={signingUp ? "disabled_btn" : ''} />
+                    className={signingUp ? "roller" : ''} />
                   <p className="form-info">
                     Already have an account ?
                     <Link to="/signin"> Login</Link>

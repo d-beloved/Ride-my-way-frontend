@@ -12,6 +12,9 @@ const state = {
   oneRide: {
     ride: {},
     isLoading: false
+  },
+  requestRide: {
+    requesting: false
   }
 };
 
