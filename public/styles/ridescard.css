@@ -87,6 +87,13 @@ ul li {
   background-color:black;
 }
 
+.tbutton {
+  padding: 12px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 .sign .button,
 .sign .sbutton {
   margin: 10px;

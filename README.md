@@ -10,7 +10,7 @@ This is a carpooling application that allows you to share your ride with others,
 * [x] Users can create an account and log in.
 * [X] Drivers can add ride offers.
 * [X] Passengers can view all available ride offers.
-* [x] Passengers can see the details of a ride offer and request to join the ride. E.g What time
+* [x] Passengers can see the details of a ride offer * [x] Passengers can request to join the ride. E.g What time
 the ride leaves, where it is headed e.t.c
 
 The App is hosted on heroku [ here ](https://my-ridemyway.herokuapp.com/)

@@ -110,8 +110,8 @@ class Signin extends Component {
                 <div className="submit-btn">
                   <input
                     type="submit"
-                    value="Login"
-                    className={signingIn ? "disabled_btn" : ''} />
+                    value={signingIn ? "" : "Login"}
+                    className={signingIn ? "roller" : ''} />
                   <p className="form-info">
                     Not registered ? create an account
                     <Link to="/signup"> Signup</Link>

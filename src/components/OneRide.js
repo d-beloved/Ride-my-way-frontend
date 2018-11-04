@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { getOneRide } from '../actions/ridesAction';
+import { getOneRide, requestRide } from '../actions/ridesAction';
 import RideDetail from './RideDetail';
 import background from '../../public/images/cabbie.jpg';
 import Loader from './Loader';
@@ -12,6 +12,7 @@ class OneRide extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.request = this.request.bind(this)
   }
   
   componentDidMount() {
@@ -24,6 +25,12 @@ class OneRide extends Component {
    }
     fetchOneRide(rideid);
   }
+
+  request() {
+    const { match, handleRequestRide } = this.props;
+    const { rideid } = match.params;
+    handleRequestRide(rideid);
+}
 
   render() {
     const { ride, loading } = this.props;
@@ -52,7 +59,7 @@ class OneRide extends Component {
             <div style={{ marginTop: '80px', textAlign: 'center' }}>
               <Loader size={'70px'} />
             </div>
-              : <RideDetail ride={ride} /> }
+              : <RideDetail ride={ride} handleRequest={this.request} /> }
         </div>
       </div>
     );
@@ -63,13 +70,17 @@ OneRide.propTypes = {
   ride: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   fetchOneRide: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
+  handleRequestRide: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({
   fetchOneRide(rideid) {
     return dispatch(getOneRide(rideid));
-  }
+  },
+  handleRequestRide(rideid) {
+      return dispatch(requestRide(rideid));
+    }
 });
 
 const mapStateToProps = state => ({

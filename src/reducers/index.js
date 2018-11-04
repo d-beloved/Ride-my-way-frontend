@@ -1,12 +1,18 @@
 import { combineReducers } from 'redux';
 import userReducer from './userReducers';
-import { allRides, createRide, oneRide } from './ridesReducers';
+import {
+  allRides,
+  createRide,
+  oneRide,
+  requestRide
+} from './ridesReducers';
 
 const rootReducer = combineReducers({
   users: userReducer,
   allRides,
   createRide,
-  oneRide
+  oneRide,
+  requestRide
 });
 
 export default rootReducer;
